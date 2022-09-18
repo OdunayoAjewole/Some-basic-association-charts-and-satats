@@ -1,0 +1,62 @@
+---
+title: "Charts for association"
+author: "Odunayo Ajewole"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### A SUMMARY OF MODULE 6
+ 
+ Visualization with charts is the best way to look at association between variables. It is easier to see patterns through pictures, and this underscores the importance of charts and graphs.
+ 
+ This module deals with how to visualize bivariate having done univariate visualization in module two. The visualizations discussed are;
+ 
+-	Bar plot
+-	Boxplot
+-	Scatterplot 
+ 
+ The first bivariate visualization described is bar chart. Bar chart can be used to compare group mean, that is, association between categorical variables that indicate group membership and a quantitative outcome variable. It is important to always remember that the bar chart is used for summary data hence the mean of the quantitative outcome variable must first be calculated. The mean values is then plotted against the categorical variables.
+ 
+ Grouped boxplot is used to compare several groups of the same quantitative outcomes. Better put, boxplot is best used when I have different groups of a single categorical variable and I want to compare a quantitative outcome of this categorical variable. 
+ 
+ The same variables used for bar plot are also the ones used for box plot, however bar plot visualizes the summary statistics of the quantitative variable while boxplot visualizes the actual values of the same quantitative variables against the categories.
+ 
+ Scatter plot is used for visualizing the relationship between two quantitative variables. After plotting a scatter plot, a linear regression line can also be inserted to see if there is a linear correlation between the variables plotted.  Also, Lowess line can also be superimposed as well. Lowess is locally weighted scatter plot smoothing line. Apart from those two, there are several other features that can be added to the scatter plot to get more information.
+
+#### Commonality of the term 'nfl' via a grouped boxplot grouped by the four regions of USA using an external data 'searchdata'
+
+##### packages used
+baseR
+
+##### Import data
+```{r echo=TRUE}
+searchdata <- read.csv(file.choose(), header = TRUE, sep = ",")
+```
+
+##### View data
+```{r echo=TRUE}
+View(searchdata)
+str(searchdata)
+```
+
+##### Attach data
+```{r echo=TRUE}
+attach(searchdata)
+```
+
+##### create a box plot
+```{r}
+boxplot(searchdata$nfl ~ searchdata$region)
+```
+
+##### customizing the boxplot
+```{r echo=TRUE}
+boxplot(nfl ~ region, boxwex = 0.5,
+        whisklty = 1, staplelty = 0, outpch = 16,
+        main = "Google Search in NFL by Region of US", xlab = "Region of US",
+        ylab = "Search Interest (z score)")
+```
